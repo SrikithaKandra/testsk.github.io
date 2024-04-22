@@ -188,7 +188,7 @@ function addTask() {
       allTasksColumn.appendChild(taskItem);
       closeAddTaskModal();
       // Provide feedback to the user with a popup
-      alert("Task has been added successfully!");
+      showPopup("Task has been added successfully!");
     }
     return false;
   } else {
