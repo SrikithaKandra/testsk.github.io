@@ -125,6 +125,20 @@ function addTask() {
   } else if (priority === "high") {
     priorityColor = "red";
   }
+  // Get tag input and container elements
+  var tagInput = document.getElementById("taskTag");
+  var tagContainer = document.querySelector(".tagContainer");
+  // Create tag only if there is a tag input value
+  if (tagInput.value.trim() !== "") {
+    var tag = tagInput.value.trim();
+    var tagElement = document.createElement("div");
+    tagElement.classList.add("tag");
+    tagElement.textContent = tag;
+    tagContainer.appendChild(tagElement);
+    // Clear the input field after adding the tag
+    tagInput.value = "";
+  }
+    
   // Regular expression to match disallowed characters
   var disallowedCharsRegex = /[\/\\?*:“<>~;'"[\]{}()&^%$.]/;
 
@@ -194,22 +208,6 @@ function addTask() {
     alert("Please enter a task title.");
   }
 }
-function addTag() {
-  var tagInput = document.getElementById("taskTag");
-  var tag = tagInput.value.trim();
-  
-  if (tag !== "") {
-    var tagContainer = document.getElementById("tagContainer");
-    var tagElement = document.createElement("div");
-    tagElement.classList.add("tag");
-    tagElement.textContent = tag;
-    tagContainer.appendChild(tagElement);
-    
-    // Clear the input field after adding the tag
-    tagInput.value = "";
-  }
-}
-
 
 function toggleDetails(taskId) {
   var details = document.getElementById(taskId).querySelector(".details");
