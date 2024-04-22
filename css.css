@@ -492,4 +492,8 @@ button:hover {
   background-color: #45a049;
 }
 
+.button-container {
+  text-align: center;
+}
+
 
