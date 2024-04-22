@@ -493,7 +493,8 @@ button:hover {
 }
 
 .button-container {
-  text-align: center;
+  transform: translate(-50%, 0%) ;
+  margin-left: 50%;
 }
 
 
