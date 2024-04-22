@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<meta http-equiv='cache-control' content='no-cache'>
+<meta http-equiv='expires' content='0'>
+<meta http-equiv='pragma' content='no-cache'>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Management</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="css.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Task Management</h1>
+  </header>
+
+
+
+  <!--Section buttons to access planner, courses, calendar-->
+  <!--These are our tab links-->
+  <div class="tab">
+    <button class="tablinks" id="boardButton" onclick="openTab(event, 'Board')">Kanban Board</button>
+    <button class="tablinks" onclick="openTab(event, 'Courses')">Courses</button>
+    <button class="tablinks" onclick="openTab(event, 'Calendar'); showCalendar()">Calendar</button>
+  </div>
+  <label class="switch">
+    <input type="checkbox" id="themeToggle" onchange="toggleColors()">
+    <span class="slider round"></span>
+  </label>
+
+
+  <!--HERE IS THE CONTENT FOR THE DIFFERENT TABS-->
+  <!--The Kanban Board tab-->
+  <div id="Board" class="tabcontent">
+    <!--Columns for the Kanban board.-->
+    <div class="columns">
+      <div id="allTasks" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>All Tasks</h2>
+        <!--The button to add tasks.-->
+        <button class="add-task-button" onclick="openAddTaskModal()">+</button>
+      </div>
+
+      <div id="completedTasks" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Completed Tasks</h2>
+      </div>
+
+      <div id="upcomingTasks" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <h2>Upcoming Tasks</h2>
+      </div>
+    </div>
+
+    <!--This is what appears after pressing the add task button.-->
+    <div id="addTaskModal" class="add-task-modal">
+      <div class="modal-content">
+        <!-- <span class="close-modal" onclick="closeAddTaskModal()">&times;</span> -->
+        <!--Following line creates a button to close the add task pop up.-->
+        <button type="button" onclick="closeAddTaskModal()" class="close-button">Close</button>
+        <h2>Add Task</h2>
+        <form id="addTaskForm" onsubmit="return addTask()">
+          <label for="taskTitle">Task Name:</label>
+          <input type="text" id="taskTitle" name="taskTitle" required><br>
+          <label for="taskDescription">Task Description:</label>
+          <textarea id="taskDescription" name="taskDescription" rows="4"></textarea><br>
+
+          <label for="taskPriority">Priority:</label>
+          <select id="taskPriority" name="taskPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select><br>
+
+          <label for="taskdate">Task Date:</label>
+          <input type="date" id="selectedDate" name="selectedDate"><br>
+
+          <!--Drop down bar for the courses.-->
+          <br>
+          <label for="courseOption">Course: </label>
+          <select id="courseOptions" name="courseOptions">
+            <option value="no course">No Course</option>
+          </select>
+          <br>
+          <button type="submit" class="add-course-button">Add Task</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div id="Courses" class="tabcontent">
+    <h2 id="course-menu-title">Course Menu</h2>
+    <!--Button to add courses.-->
+    <button type="button" class="add-course-button" onclick="openAddCourseWindow()">Add Course</button>
+    <hr>
+    <!--Column where courses are displayed.-->
+    <div id="courseListSpring" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>Spring 2024</h2>
+    </div><br>
+    <div id="courseListSummer" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>Summer 2024</h2>
+    </div><br>
+    <div id="courseListFall" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+      <h2>Fall 2024</h2>
+    </div><br>
+
+    <!--This is the pop up window that appears when clicking on Add Course.-->
+    <div id="addCourse" class="course-menu">
+      <!--Add course pop up window.-->
+      <div class="menu-content">
+        <!--Button to close the window.-->
+        <button type="button" onclick="closeAddCourseWindow()" class="close-button">Close</button>
+        <h2>Add Course</h2>
+        <form id="addCourseForm" onsubmit="return addCourse()">
+          <!--Prompt for course name, this must be given.-->
+          <label for="courseName">Course Name:</label>
+          <input type="text" id="courseName" name="courseName" required><br>
+          <!--Users may enter some description of the course.-->
+          <label for="courseDescription">Course Description:</label>
+          <textarea id="courseDescription" name="courseDescription" rows="1"></textarea><br>
+          <!--Users can now specify the semester the course it from.-->
+          <!-- <label for="courseSemester">Semester:</label>
+          <select id="courseSemester" name="courseSemester">
+            <option value="spring2024">Spring 2024</option>
+            <option value="summer2024">Summer 2024</option>
+            <option value="fall2024">Fall 2024</option>
+          </select><br> -->
+          <!--Button to submit the form.-->
+          <button type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Calendar tab-->
+  <div id="Calendar" class="tabcontent">
+    <div id="calendarSection" class="calendar-section">
+      <div id="calendar" class="calendar"></div>
+    </div>
+  </div>
+
+  <!-- This is popup window for UNDO-->
+  <div id="undoPopup" class="popup">
+    <p>Task deleted. Undo?</p>
+    <div class="popup-footer">
+      <button onclick="undoDeletion()">Undo</button>
+      <button onclick="closeUndoPopup()">Close</button> 
+    </div>
+  </div>
+
+  <!--Script files.-->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="javascript.js"></script>
+  <!--We want the boardButton to be the default tab, so this script will make it so it's clicked on first.-->
+  <script>
+    document.getElementById("boardButton").click();
+  </script>
+</body>
+
+</html>
