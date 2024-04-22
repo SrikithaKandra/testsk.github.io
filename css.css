@@ -1,0 +1,454 @@
+:root {
+  --background-color: whitesmoke;
+  --header-bg-color: #2d545e;
+  --tab-bg-color: #f1f1f1;
+  --tab-button-bg-color: inherit;
+  --tab-button-hover-bg-color: #ddd;
+  --tab-button-active-bg-color: #ccc;
+  --column-bg-color: #e1b382;
+  --task-bg-color: white;
+  --task-hover-bg-color: #f2f2f2;
+  --add-task-button-bg-color: #e1b382;
+  --add-task-button-color: black;
+  --modal-bg-color: #e1b382;
+  --course-menu-bg-color: rgba(0, 0, 0, 0.5);
+  --menu-content-bg-color: #e1b382;
+  --calendar-task-bg-color: #e1b382;
+  --close-calendar-button-bg-color: #CBC3E3;
+  --delete-confirm-bg-color: #e1b382;
+  --popup-bg-color: #e1b382;
+}
+
+body {
+  font-family: Calibri;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+}
+
+header {
+  background-color: var(--header-bg-color);
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+/* TAB STYLING */
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: var(--tab-bg-color);
+}
+
+.dark-mode .tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: var(--tab-bg-color);
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: var(--tab-button-bg-color);
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.dark-mode .tab button {
+  background-color: var(--tab-button-bg-color);
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: var(--tab-button-hover-bg-color);
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: var(--tab-button-active-bg-color);
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+
+/* KANBAN BOARD STYLING*/
+.columns {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.column {
+  flex: 1;
+  background-color: var(--column-bg-color);
+  color: black;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-right: 10px;
+  overflow: auto;
+  max-height: 400px;
+  min-height: 100px;
+}
+
+.dark-mode .column {
+  background-color: #301934;
+  color: white;
+
+}
+
+.task {
+  background-color: var(--task-bg-color);
+  color: black;
+  /*border: 1px solid #ccc;*/
+  box-shadow: 2px 2px 2px lightslategrey;
+  margin-bottom: 5px;
+  padding: 10px;
+  cursor: move;
+}
+
+.task:hover {
+  background-color: var(--task-hover-bg-color);
+}
+
+.add-task-button {
+  position: relative;
+  left: 340px;
+  bottom: 75px;
+  background-color: var(--add-task-button-bg-color);
+  color: var(--add-task-button-color);
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 25%;
+}
+.dark-mode .add-task-button{
+  background-color: #301934;
+  color: white;
+
+}
+
+.add-task-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  background-color: var(--modal-bg-color);
+  padding: 20px;
+  max-width: 400px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 4px lightgray;
+}
+
+.dark-mode .modal-content {
+  background-color: #CBC3E3;
+  color: black;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+/* STYLES FOR COURSES */
+.course-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--course-menu-bg-color);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for the "Add course" button */
+.add-course-button {
+  background-color: rgba(7, 160, 231, 0.507); /* Change the background color to blue */
+  color: white; /* Change the text color to white */
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.add-course-button:hover {
+  background-color: white;
+  color: rgba(7, 160, 231, 0.507);
+}
+
+
+/* Style for the "Complete" button */
+.complete-button {
+  background-color: rgb(0, 157, 255); /* Change the background color to green */
+  color: black; /* Change the text color to white */
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* Style for the "Edit" button */
+.edit-button {
+  background-color: burlywood; /* Change the background color to blue */
+  color: black; /* Change the text color to white */
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+/* Style for the "Delete" button */
+.delete-button {
+  background-color: whitesmoke; /* Change the background color to red */
+  color: red; /* Change the text color to white */
+  border: red;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+
+
+.dark-mode .course-menu {
+  background-color: #301934;
+  color: black;
+}
+
+/* Menu content style. */
+.menu-content {
+  position: relative;
+  background-color: var(--menu-content-bg-color);
+  padding: 20px;
+  min-width: 400px;
+  max-width: 400px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.dark-mode .menu-content {
+  background-color: #CBC3E3;
+
+}
+
+/* CALENDAR STYLES */
+.calendar-section {
+  display: none;
+  margin-top: 20px;
+}
+
+.calendar {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ui-datepicker-calendar td.highlight {
+  background-color: #b3d9ff !important;
+  /* Highlight color for the current date */
+}
+
+.close-calendar-button {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: var(--close-calendar-button-bg-color);
+  /* Close button background color */
+  color: black;
+  /* Close button text color */
+  border: none;
+  cursor: pointer;
+}
+
+.calendar-task {
+  background-color: var(--calendar-task-bg-color);
+  padding: 5px;
+  margin: 2px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.dark-mode .calendar-task {
+  background-color: #CBC3E3;
+}
+
+/* OTHER STYLES */
+/* Delete container style. */
+.delete-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Delete confirmation pop up style. */
+.delete-confirm {
+  position: relative;
+  background-color: var(--delete-confirm-bg-color);
+  padding: 20px;
+  min-width: 400px;
+  max-width: 400px;
+  margin: 20px;
+  border-radius: 5px;
+}
+.dark-mode .delete-confirm{
+  background-color: #CBC3E3;
+}
+
+/* Style for the undo popup window */
+/* This is the popup window background. */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: whitesmoke;
+  height: 100px;
+  /* Change background color as needed */
+  padding: 20px;
+  min-width: 400px;
+  max-width: 400px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.popup-footer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: var(--popup-bg-color);
+  height: 10px;
+  /* Change background color as needed */
+  padding: 20px;
+  min-width: 400px;
+  max-width: 400px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.dark-mode .popup{
+  background-color: #301934;
+}
+
+.dark-mode .popup-footer {
+  background-color: #CBC3E3;
+}
+.popup p {
+  margin-bottom: 10px;
+}
+
+.popup button {
+  margin-right: 10px;
+}
+
+/* Dark mode styles. */
+.dark-mode {
+  color: #f9f9f9;
+  /* Light text color */
+  background-color: whitesmoke;
+}
+
+.dark-mode header {
+  background-color: #301934;
+  /* Dark header background color */
+  color: white;
+  /* Dark header text color */
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider (the colored bar) */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.feedback-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(0, 128, 0, 0.8); /* Adjust color and opacity as needed */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  transition: opacity 1s ease;
+  opacity: 1;
+  display: none;
+}
