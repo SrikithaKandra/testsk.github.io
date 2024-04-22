@@ -496,5 +496,17 @@ button:hover {
   transform: translate(-50%, 0%) ;
   margin-left: 50%;
 }
+.tag {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.oval-input {
+  border-radius: 20px;
+}
 
 
