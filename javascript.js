@@ -99,17 +99,6 @@ function completeTask(taskId) {
   }
 }
 
-function showPopup(message) {
-  var popup = document.getElementById("taskpopup");
-  var popupMessage = document.getElementById("popupMessage");
-  popupMessage.innerText = message;
-  popup.classList.add("show");
-
-  // Hide the popup after 3 seconds (adjust as needed)
-  setTimeout(function() {
-    popup.classList.remove("show");
-  }, 3000);
-}
 
 function addTask() {
   var title = document.getElementById("taskTitle").value;
@@ -187,8 +176,6 @@ function addTask() {
       `;
       allTasksColumn.appendChild(taskItem);
       closeAddTaskModal();
-      // Provide feedback to the user with a popup
-      showPopup("Task has been added successfully!");
     }
     return false;
   } else {
