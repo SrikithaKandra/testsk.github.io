@@ -508,16 +508,8 @@ button:hover {
   border-radius: 20px;
 }
 
-/* CSS styles for different priority levels */
-.low-priority {
-  background-color: #e0f2f1; /* Light green background for low priority */
+.priority-number {
+  font-weight: bold;
+  margin-right: 5px; /* Adjust spacing as needed */
 }
 
-.medium-priority {
-  background-color: #ffecb3; /* Light yellow background for medium priority */
-}
-
-.high-priority {
-  background-color: grey; /* Texture image for high priority */
- 
-}
