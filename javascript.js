@@ -190,8 +190,8 @@ function addTask() {
 
       var priorityElement = document.createElement("span");
       priorityElement.setAttribute("class", "priority-number");
-      priorityElement.textContent = priorityNumber;
-      taskItem.appendChild(priorityElement);
+      priorityElement.innerText = priorityNumber;
+      
 
       taskItem.innerHTML = `
       <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
