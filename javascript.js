@@ -1,3 +1,4 @@
+
 // To open tabs
 function openTab(evt, cityName) {
   var i, tabcontent, tablinks;
@@ -117,14 +118,19 @@ function addTask() {
   var course = document.getElementById("courseOptions").value;
   var selectedDate = document.getElementById("selectedDate").value;
   var priorityColor = "";
+  var priorityClass = "";
   var priority = document.getElementById("taskPriority").value;
   if (priority === "low") {
     priorityColor = "green";
+    priorityClass = "low-priority";
   } else if (priority === "medium") {
     priorityColor = "orange";
+    priorityClass = "medium-priority";
   } else if (priority === "high") {
     priorityColor = "red";
+    priorityClass = "high-priority";
   }
+
   // Get tag input and container elements
   var tagInput = document.getElementById("taskTag");
   var tagContainer = document.querySelector(".tagContainer");
@@ -138,7 +144,7 @@ function addTask() {
     // Clear the input field after adding the tag
     tagInput.value = "";
   }
-    
+
   // Regular expression to match disallowed characters
   var disallowedCharsRegex = /[\/\\?*:“<>~;'"[\]{}()&^%$.]/;
 
@@ -177,7 +183,7 @@ function addTask() {
       var taskItem = document.createElement("div");
       var taskId = "task" + Date.now();
 
-      taskItem.setAttribute("class", "task");
+      taskItem.setAttribute("class", "task" + priorityClass);
       taskItem.setAttribute("id", taskId);
       taskItem.setAttribute("draggable", "true");
       taskItem.setAttribute("ondragstart", "drag(event)");
