@@ -118,17 +118,17 @@ function addTask() {
   var course = document.getElementById("courseOptions").value;
   var selectedDate = document.getElementById("selectedDate").value;
   var priorityColor = "";
-  var priorityClass = "";
+  var priorityNumber = "";
   var priority = document.getElementById("taskPriority").value;
   if (priority === "low") {
     priorityColor = "green";
-    priorityClass = "low-priority";
+    priorityNumber = "3";
   } else if (priority === "medium") {
     priorityColor = "orange";
-    priorityClass = "medium-priority";
+    priorityNumber = "2";
   } else if (priority === "high") {
     priorityColor = "red";
-    priorityClass = "high-priority";
+    priorityNumber = "1";
   }
 
   // Get tag input and container elements
@@ -187,6 +187,11 @@ function addTask() {
       taskItem.setAttribute("id", taskId);
       taskItem.setAttribute("draggable", "true");
       taskItem.setAttribute("ondragstart", "drag(event)");
+
+      var priorityElement = document.createElement("span");
+      priorityElement.setAttribute("class", "priority-number");
+      priorityElement.textContent = priorityNumber;
+      taskItem.appendChild(priorityElement);
 
       taskItem.innerHTML = `
       <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
